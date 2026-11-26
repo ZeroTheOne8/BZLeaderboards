@@ -1,0 +1,86 @@
+# BZLeaderboards - by BZ Studios
+# All text uses MiniMessage: https://docs.advntr.dev/minimessage/format.html
+
+# How often the boards are rebuilt (async, off the main thread).
+rebuild-interval-minutes: 5
+
+# Entries per board (1-45).
+top-size: 10
+
+# UUIDs that never appear on any board. Online players with the
+# bzleaderboards.hide permission are hidden automatically.
+hidden-uuids: []
+
+menu:
+  main-title: "<gold><bold>Leaderboards"
+  board-title: "<gold><bold>Top <board>"
+  filler: GRAY_STAINED_GLASS_PANE
+  back-name: "<red>Back"
+  back-lore:
+    - "<gray>Boards update every few minutes."
+  board-lore:
+    - "<gray>Click to view the top players."
+  entry-name: "<yellow>#<rank> <white><player>"
+  entry-lore:
+    - "<gray><board>: <green><value>"
+
+messages:
+  no-permission: "<red>You don't have permission."
+  unknown-board: "<red>Unknown board: <white><board>"
+  reloaded: "<green>BZLeaderboards reloaded."
+  rebuilding: "<yellow>Rebuilding all boards..."
+  empty: "<gray>No data yet."
+  status: "<gray>Boards: <white><boards> <gray>| Last build: <white><age>"
+
+# source: stat  -> one value from world/stats/<uuid>.json  (category + key)
+# source: sum   -> sum of every entry in a category (e.g. all blocks mined)
+# source: vault -> balance from your Vault economy
+# format: number | time (value in ticks) | money | distance (value in cm)
+# key may hold several fallbacks separated by commas (first one present wins).
+boards:
+  money:
+    name: "Balance"
+    icon: GOLD_INGOT
+    source: vault
+    format: money
+  deaths:
+    name: "Deaths"
+    icon: SKELETON_SKULL
+    source: stat
+    category: "minecraft:custom"
+    key: "minecraft:deaths"
+    format: number
+  playtime:
+    name: "Playtime"
+    icon: CLOCK
+    source: stat
+    category: "minecraft:custom"
+    key: "minecraft:play_time,minecraft:play_one_minute"
+    format: time
+  blocks:
+    name: "Blocks Mined"
+    icon: DIAMOND_PICKAXE
+    source: sum
+    category: "minecraft:mined"
+    format: number
+  mobs:
+    name: "Mobs Killed"
+    icon: ZOMBIE_HEAD
+    source: stat
+    category: "minecraft:custom"
+    key: "minecraft:mob_kills"
+    format: number
+  kills:
+    name: "Player Kills"
+    icon: DIAMOND_SWORD
+    source: stat
+    category: "minecraft:custom"
+    key: "minecraft:player_kills"
+    format: number
+  distance:
+    name: "Distance Walked"
+    icon: LEATHER_BOOTS
+    source: stat
+    category: "minecraft:custom"
+    key: "minecraft:walk_one_cm"
+    format: distance

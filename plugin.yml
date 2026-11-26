@@ -1,0 +1,28 @@
+name: BZLeaderboards
+version: '${project.version}'
+main: net.bzstudios.leaderboards.BZLeaderboards
+api-version: '1.21'
+authors: [BZ Studios]
+description: Browsable leaderboards in one menu - money, deaths, playtime, blocks, mobs, kills and distance.
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  leaderboards:
+    description: Open the leaderboards
+    usage: /leaderboards [board]
+    aliases: [leaderboard, lb]
+  bzleaderboards:
+    description: Admin commands for BZLeaderboards
+    usage: /bzleaderboards <reload|rebuild|status>
+    permission: bzleaderboards.admin
+
+permissions:
+  bzleaderboards.use:
+    description: Open the leaderboards
+    default: true
+  bzleaderboards.admin:
+    description: Reload the plugin and force a rebuild
+    default: op
+  bzleaderboards.hide:
+    description: Keep this player off every board (read while online)
+    default: false
