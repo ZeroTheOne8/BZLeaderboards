@@ -1,0 +1,2 @@
+# BZLeaderboards
+light weighted plugin
